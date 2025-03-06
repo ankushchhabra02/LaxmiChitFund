@@ -1,16 +1,30 @@
 "use client";
-import React, { useState } from "react";
+import React, { useEffect, useState } from "react";
 import Script from "next/script";
-import { initiate } from "@/actions/useractions";
+import { fetchpayments, fetchuser, initiate } from "@/actions/useractions";
 import { useSession } from "next-auth/react";
 
 const PaymentPage = ({ username }) => {
   //   const { data: session } = useSession();
 
   const [paymentform, setPaymentform] = useState({});
+  const [currentUser, setcurrentUser] = useState({});
+  const [payments, setPayments] = useState([]);
+
+  useEffect(() => {
+    getData();
+  }, []);
 
   const handleChange = (e) => {
     setPaymentform({ ...paymentform, [e.target.name]: e.target.value });
+  };
+
+  const getData = async () => {
+    let u = await fetchuser(username);
+    setcurrentUser(u);
+    let dbpayments = await fetchpayments(username);
+    setPayments(dbpayments);
+    console.log(u, dbpayments);
   };
 
   const pay = async (amount) => {
@@ -73,78 +87,23 @@ const PaymentPage = ({ username }) => {
             {/* Show list of all supporters as a list of leaderboard */}
             <h2 className="text-2xl font-bold my-5">Supporters</h2>
             <ul className="mx-5 text-lg">
-              <li className="my-4 flex gap-2 items-center">
-                <img
-                  className="border-none rounded-full"
-                  width={33}
-                  src="profile.gif"
-                  alt="user avatar"
-                />
-                <span>
-                  Ayush donated <span className="font-bold">₹20</span> with a
-                  message "Big Supporter"
-                </span>
-              </li>
-              <li className="my-4 flex gap-2 items-center">
-                <img
-                  className="border-none rounded-full"
-                  width={33}
-                  src="profile.gif"
-                  alt="user avatar"
-                />
-                <span>
-                  Ayush donated <span className="font-bold">₹20</span> with a
-                  message "Big Supporter"
-                </span>
-              </li>
-              <li className="my-4 flex gap-2 items-center">
-                <img
-                  className="border-none rounded-full"
-                  width={33}
-                  src="profile.gif"
-                  alt="user avatar"
-                />
-                <span>
-                  Ayush donated <span className="font-bold">₹20</span> with a
-                  message "Big Supporter"
-                </span>
-              </li>
-              <li className="my-4 flex gap-2 items-center">
-                <img
-                  className="border-none rounded-full"
-                  width={33}
-                  src="profile.gif"
-                  alt="user avatar"
-                />
-                <span>
-                  Ayush donated <span className="font-bold">₹20</span> with a
-                  message "Big Supporter"
-                </span>
-              </li>
-              <li className="my-4 flex gap-2 items-center">
-                <img
-                  className="border-none rounded-full"
-                  width={33}
-                  src="profile.gif"
-                  alt="user avatar"
-                />
-                <span>
-                  Ayush donated <span className="font-bold">₹20</span> with a
-                  message "Big Supporter"
-                </span>
-              </li>
-              <li className="my-4 flex gap-2 items-center">
-                <img
-                  className="border-none rounded-full"
-                  width={33}
-                  src="profile.gif"
-                  alt="user avatar"
-                />
-                <span>
-                  Ayush donated <span className="font-bold">₹20</span> with a
-                  message "Big Supporter"
-                </span>
-              </li>
+              {payments.map((p, i) => {
+                return (
+                  <li className="my-4 flex gap-2 items-center">
+                    <img
+                      className="border-none rounded-full"
+                      width={33}
+                      src="profile.gif"
+                      alt="user avatar"
+                    />
+                    <span>
+                      {p.name} donated{" "}
+                      <span className="font-bold">₹{p.amount}</span> with a
+                      message "{p.message}"
+                    </span>
+                  </li>
+                );
+              })}
             </ul>
           </div>
           <div className="makePayment w-1/2 bg-slate-900 rounded-lg text-white p-10">
@@ -175,6 +134,7 @@ const PaymentPage = ({ username }) => {
                 placeholder="Enter Amount"
               />
               <button
+                onClick={() => pay(Number.parseInt(paymentform.amount * 100))}
                 type="button"
                 className="text-white bg-gradient-to-r from-purple-500 to-pink-500 hover:bg-gradient-to-l focus:ring-4 focus:outline-none focus:ring-purple-200 dark:focus:ring-purple-800 font-medium rounded-lg text-sm px-5 py-2.5 text-center me-2 mb-2"
               >
