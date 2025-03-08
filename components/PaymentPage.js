@@ -32,7 +32,7 @@ const PaymentPage = ({ username }) => {
     let a = await initiate(amount, username, paymentform);
     let orderId = a.id;
     var options = {
-      key: process.env.NEXT_PUBLIC_KEY_ID, // Enter the Key ID generated from the Dashboard
+      key: currentUser.razorpayid, // Enter the Key ID generated from the Dashboard
       amount: amount, // Amount is in currency subunits. Default currency is INR. Hence, 50000 refers to 50000 paise
       currency: "INR",
       name: "Laxmi Chit Fund", //your business name
@@ -63,7 +63,7 @@ const PaymentPage = ({ username }) => {
       <div className="cover w-full bg-red-50 relative">
         <img
           className="object-cover w-full h-[350]"
-          src="https://media.licdn.com/dms/image/v2/D4D16AQHQKVdNNCceZw/profile-displaybackgroundimage-shrink_350_1400/profile-displaybackgroundimage-shrink_350_1400/0/1682089688391?e=1743638400&v=beta&t=u_Dkn36HMqAvAyzooibw6h3cHUDFtbgXD3IJxMTB_Vk"
+          src={currentUser.coverpic}
           alt=""
         />
         <div className="absolute -bottom-20 right-[44%] border-white border-2 rounded-full ">
@@ -71,13 +71,13 @@ const PaymentPage = ({ username }) => {
             className="rounded-full"
             width={200}
             height={200}
-            src="https://media.licdn.com/dms/image/v2/D4E35AQGBihbceVVI_w/profile-framedphoto-shrink_200_200/profile-framedphoto-shrink_200_200/0/1719442247501?e=1741507200&v=beta&t=8OLVJjwGsZBAcdmSNbA4JQqxrtDmMpI5KI8dR4P07PM"
+            src={currentUser.profilepic}
             alt=""
           />
         </div>
       </div>
       <div className="info flex justify-center items-center my-24 mb-32 flex-col gap-2">
-        <div className="font-bold text-lg">@{username}</div>
+        <div className="font-bold text-lg">@{currentUser.username}</div>
         <div className="text-slate-400">
           Software Developer | Java | Next.js | Tailwind CSS | React Native
         </div>
@@ -87,6 +87,7 @@ const PaymentPage = ({ username }) => {
             {/* Show list of all supporters as a list of leaderboard */}
             <h2 className="text-2xl font-bold my-5">Supporters</h2>
             <ul className="mx-5 text-lg">
+              {payments.length == 0 && <li>No payments yet</li>}
               {payments.map((p, i) => {
                 return (
                   <li className="my-4 flex gap-2 items-center">
@@ -136,7 +137,11 @@ const PaymentPage = ({ username }) => {
               <button
                 onClick={() => pay(Number.parseInt(paymentform.amount * 100))}
                 type="button"
-                className="text-white bg-gradient-to-r from-purple-500 to-pink-500 hover:bg-gradient-to-l focus:ring-4 focus:outline-none focus:ring-purple-200 dark:focus:ring-purple-800 font-medium rounded-lg text-sm px-5 py-2.5 text-center me-2 mb-2"
+                disabled={
+                  paymentform.name?.length < 3 ||
+                  paymentform.message?.length < 4
+                }
+                className="disabled:from-purple-300 text-white bg-gradient-to-r from-purple-500 to-pink-500 hover:bg-gradient-to-l focus:ring-4 focus:outline-none focus:ring-purple-200 dark:focus:ring-purple-800 font-medium rounded-lg text-sm px-5 py-2.5 text-center me-2 mb-2"
               >
                 Pay
               </button>
@@ -144,20 +149,32 @@ const PaymentPage = ({ username }) => {
             {/* Or choose from these amounts */}
             <div className="flex gap-2 mt-5">
               <button
+                disabled={
+                  paymentform.name?.length < 3 ||
+                  paymentform.message?.length < 4
+                }
                 className="bg-slate-800 p-3 rounded-lg"
-                onClick={() => pay(1000)}
+                onClick={() => pay(2000)}
               >
                 Pay ₹20
               </button>
               <button
+                disabled={
+                  paymentform.name?.length < 3 ||
+                  paymentform.message?.length < 4
+                }
                 className="bg-slate-800 p-3 rounded-lg"
-                onClick={() => pay(2000)}
+                onClick={() => pay(5000)}
               >
                 Pay ₹50
               </button>
               <button
+                disabled={
+                  paymentform.name?.length < 3 ||
+                  paymentform.message?.length < 4
+                }
                 className="bg-slate-800 p-3 rounded-lg"
-                onClick={() => pay(3000)}
+                onClick={() => pay(10000)}
               >
                 Pay ₹100
               </button>

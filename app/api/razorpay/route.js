@@ -28,7 +28,7 @@ export const POST = async (req) => {
   if (xx) {
     // update the payment statux
     const updatedPayment = await Payment.findOneAndUpdate(
-      { old: body.razorpar_order_id },
+      { oid: body.razorpay_order_id },
       { done: "true" },
       { new: true }
     );
