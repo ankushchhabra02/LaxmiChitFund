@@ -3,18 +3,45 @@ import React, { useEffect, useState } from "react";
 import Script from "next/script";
 import { fetchpayments, fetchuser, initiate } from "@/actions/useractions";
 import { useSession } from "next-auth/react";
+import { useSearchParams } from "next/navigation";
+import { ToastContainer, toast } from "react-toastify";
+import "react-toastify/dist/ReactToastify.css";
+import { Bounce } from "react-toastify";
+import { useRouter } from "next/navigation";
+import { notFound } from "next/navigation";
 
 const PaymentPage = ({ username }) => {
   //   const { data: session } = useSession();
 
-  const [paymentform, setPaymentform] = useState({});
+  const [paymentform, setPaymentform] = useState({
+    name: "",
+    message: "",
+    amount: "",
+  });
   const [currentUser, setcurrentUser] = useState({});
   const [payments, setPayments] = useState([]);
+  const searchParams = useSearchParams();
+  const router = useRouter();
 
   useEffect(() => {
     getData();
   }, []);
-
+  useEffect(() => {
+    if (searchParams.get("paymentdone") == "true") {
+      toast("Thanks for your donation!", {
+        position: "top-right",
+        autoClose: 5000,
+        hideProgressBar: false,
+        closeOnClick: true,
+        pauseOnHover: true,
+        draggable: true,
+        progress: undefined,
+        theme: "light",
+        transition: Bounce,
+      });
+    }
+    router.push(`/${username}`);
+  }, []);
   const handleChange = (e) => {
     setPaymentform({ ...paymentform, [e.target.name]: e.target.value });
   };
@@ -24,7 +51,6 @@ const PaymentPage = ({ username }) => {
     setcurrentUser(u);
     let dbpayments = await fetchpayments(username);
     setPayments(dbpayments);
-    console.log(u, dbpayments);
   };
 
   const pay = async (amount) => {
@@ -58,6 +84,20 @@ const PaymentPage = ({ username }) => {
   };
   return (
     <>
+      <ToastContainer
+        position="top-right"
+        autoClose={5000}
+        hideProgressBar={false}
+        newestOnTop={false}
+        closeOnClick
+        rtl={false}
+        pauseOnFocusLoss
+        draggable
+        pauseOnHover
+        theme="light"
+      />
+      {/* Same as */}
+      <ToastContainer />
       <Script src="https://checkout.razorpay.com/v1/checkout.js"></Script>
 
       <div className="cover w-full bg-red-50 relative">
@@ -79,13 +119,16 @@ const PaymentPage = ({ username }) => {
       <div className="info flex justify-center items-center my-24 mb-32 flex-col gap-2">
         <div className="font-bold text-lg">@{currentUser.username}</div>
         <div className="text-slate-400">
-          Software Developer | Java | Next.js | Tailwind CSS | React Native
+          Let's help {currentUser.username} get a laxmi!
         </div>
-        <div className="text-slate-400">628 followers . 500+ connections</div>
+        <div className="text-slate-400">
+          {payments.length} Payments . ₹
+          {payments.reduce((a, b) => a + b.amount, 0)} raised
+        </div>
         <div className="payment flex gap-3 w-[80%] mt-11">
           <div className="supporters w-1/2 bg-slate-900 rounded-lg text-white p-10">
             {/* Show list of all supporters as a list of leaderboard */}
-            <h2 className="text-2xl font-bold my-5">Supporters</h2>
+            <h2 className="text-2xl font-bold my-5">Top 10 Supporters</h2>
             <ul className="mx-5 text-lg">
               {payments.length == 0 && <li>No payments yet</li>}
               {payments.map((p, i) => {
@@ -139,7 +182,8 @@ const PaymentPage = ({ username }) => {
                 type="button"
                 disabled={
                   paymentform.name?.length < 3 ||
-                  paymentform.message?.length < 4
+                  paymentform.message?.length < 4 ||
+                  paymentform.amount?.length < 1
                 }
                 className="disabled:from-purple-300 text-white bg-gradient-to-r from-purple-500 to-pink-500 hover:bg-gradient-to-l focus:ring-4 focus:outline-none focus:ring-purple-200 dark:focus:ring-purple-800 font-medium rounded-lg text-sm px-5 py-2.5 text-center me-2 mb-2"
               >

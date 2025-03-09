@@ -7,13 +7,13 @@ import User from "@/models/User";
 
 export const initiate = async (amount, to_username, paymentform) => {
   await connectDb();
-  // fetch the secret of the user who is getting the payment
-  //   let user = await User.findOne({ username: to_username });
-  //   const secret = user.razorpaysecret;
+  //fetch the secret of the user who is getting the payment
+  let user = await User.findOne({ username: to_username });
+  const secret = user.razorpaysecret;
 
   var instance = new Razorpay({
-    key_id: process.env.NEXT_PUBLIC_KEY_ID,
-    key_secret: process.env.KEY_SECRET,
+    key_id: user.razorpayid,
+    key_secret: secret,
   });
 
   let options = {
