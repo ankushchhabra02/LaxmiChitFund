@@ -60,7 +60,7 @@ const Dashboard = () => {
       />
       {/* Same as */}
       <ToastContainer />
-      <div className="container mx-auto py-5 px-6 ">
+      <div className="container mx-auto py-5 px-6 min-h-[86vh]">
         <h1 className="text-center my-5 text-3xl font-bold">
           Welcome to your Dashboard
         </h1>

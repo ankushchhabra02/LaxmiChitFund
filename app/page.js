@@ -4,14 +4,14 @@ import Link from "next/link";
 export default function Home() {
   return (
     <>
-      <div className="flex justify-center flex-col items-center gap-4 text-white h-[44vh]">
-        <div className="font-bold text-5xl flex gap-3 justify-center items-center">
+      <div className="flex justify-center flex-col items-center gap-4 text-white h-[44vh] px-5 md:px-0 text-xs md:text-base">
+        <div className="font-bold md:text-5xl flex gap-3 justify-center items-center text-3xl">
           Build Your Wealth with Flexible, Secure Chit Funds
           <span>
             <img width={50} src="./rupee.gif" alt="" />
           </span>
         </div>
-        <p className="">
+        <p className="text-center md:text-left">
           Join LaxmiChitFund and start saving with ease while enjoying flexible
           financial solutions tailored to your needs.
         </p>
@@ -36,7 +36,7 @@ export default function Home() {
       </div>
       <div className="bg-white h-1 opacity-10"></div>
 
-      <div className="text-white container mx-auto pb-32 pt-14">
+      <div className="text-white container mx-auto pb-32 pt-14 px-10">
         <h1 className="text-3xl font-bold text-center mb-14">
           Start Saving Today!
         </h1>
@@ -48,7 +48,7 @@ export default function Home() {
               src="./piggybank.gif"
               alt=""
             />
-            <p className="font-bold">Choose Your Chit Fund</p>
+            <p className="font-bold text-center">Choose Your Chit Fund</p>
           </div>
           <div className="item space-y-3 flex flex-col items-center justify-center">
             <img
@@ -57,7 +57,7 @@ export default function Home() {
               src="./piggybank.gif"
               alt=""
             />
-            <p className="font-bold">Choose Your Chit Fund</p>
+            <p className="font-bold text-center">Choose Your Chit Fund</p>
           </div>
           <div className="item space-y-3 flex flex-col items-center justify-center">
             <img
@@ -66,7 +66,7 @@ export default function Home() {
               src="./piggybank.gif"
               alt=""
             />
-            <p className="font-bold">Choose Your Chit Fund</p>
+            <p className="font-bold text-center">Choose Your Chit Fund</p>
           </div>
         </div>
       </div>
@@ -75,14 +75,15 @@ export default function Home() {
         <h2 className="text-3xl font-bold text-center mb-14">
           Start Saving Today!
         </h2>
-        <iframe
-          width="560"
-          height="315"
-          src="https://www.youtube.com/embed/qyxCSLK2VQc?si=tSljlZYlrsHGuxTW"
-          title="YouTube video player"
-          allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
-          allowFullScreen
-        ></iframe>
+        <div className="w-[90%] h-[40vh] md:w-[50%] md:h-[40vh] lg:w-[50%] lg:h-[40vh] xl:w-[50%] xl:h-[40vh]">
+          <iframe
+            className="w-full h-full"
+            src="https://www.youtube.com/embed/qyxCSLK2VQc?si=tSljlZYlrsHGuxTW"
+            title="YouTube video player"
+            allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
+            allowFullScreen
+          ></iframe>
+        </div>
       </div>
     </>
   );

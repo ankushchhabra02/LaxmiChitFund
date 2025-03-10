@@ -15,11 +15,14 @@ const Navbar = () => {
   //   );
   // }
   return (
-    <nav className="bg-black text-white flex justify-between items-center px-4 h-16">
+    <nav className="bg-black text-white flex justify-between items-center px-4 h-16 md:h-16 flex-col md:flex-row">
       <Link href={"/"}>
         <div className="logo font-bold text-lg flex justify-center items-center">
           <img width={40} src="./rupee.gif" alt="" />
-          <span> LaxmiChitFund</span>
+          <span className="text-xl md:text-base my-3 md:my-0">
+            {" "}
+            LaxmiChitFund
+          </span>
         </div>
       </Link>
       {/* <ul className="flex justify-between gap-4">
@@ -104,7 +107,7 @@ const Navbar = () => {
 
         {session && (
           <button
-            className="text-white bg-gradient-to-r from-purple-500 to-pink-500 hover:bg-gradient-to-l focus:ring-4 focus:outline-none focus:ring-purple-200 dark:focus:ring-purple-800 font-medium rounded-lg text-sm px-5 py-2.5 text-center me-2 mb-2 "
+            className="text-white bg-gradient-to-r from-purple-500 to-pink-500 hover:bg-gradient-to-l focus:ring-4 focus:outline-none focus:ring-purple-200 dark:focus:ring-purple-800 font-medium rounded-lg text-sm px-5 py-2.5 text-center  "
             onClick={() => {
               signOut();
             }}
