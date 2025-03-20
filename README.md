@@ -52,10 +52,10 @@ LaxmiChitFund is a modern crowdfunding system built with Next.js, leveraging bot
 Here’s a preview of LaxmiChitFund in action:
 
 1. Home Page
-   ![LaxmiChitFund Demo](public\DemoScreenshots\homePage.png)
+   ![LaxmiChitFund Demo](public/DemoScreenshots/homePage.png)
 
 2. User Page
-   ![LaxmiChitFund Demo](public\DemoScreenshots\yourPage.png)
+   ![LaxmiChitFund Demo](public/DemoScreenshots/yourPage.png)
 
 3. Payment Page
-   ![LaxmiChitFund Demo](public\DemoScreenshots\paymentPage.png)
+   ![LaxmiChitFund Demo](public/DemoScreenshots/paymentPage.png)
