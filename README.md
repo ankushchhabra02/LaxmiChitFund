@@ -23,27 +23,27 @@ LaxmiChitFund is a modern crowdfunding system built with Next.js, leveraging bot
     ```sh
     git clone https://github.com/ankushchhabra02/laxmichitfund.git
     cd laxmichitfund
-
     ```
 
 2.  Install dependencies:
 
     ```sh
     npm install
-
     ```
 
 3.  Set up environment variables:
     Create a `.env.local` file in the root directory and add:
 
-        ```ini
-        MONGODB_URI=your_mongodb_connection_string
-        NEXT_PUBLIC_RAZORPAY_KEY=your_razorpay_key
+    ```ini
+    MONGODB_URI=your_mongodb_connection_string
+    NEXT_PUBLIC_RAZORPAY_KEY=your_razorpay_key
+    ```
 
 4.  Run the Development Server
 
-        ```sh
-        npm run dev
+    ```sh
+    npm run dev
+    ```
 
     Open http://localhost:3000 in your browser.
 
@@ -52,10 +52,10 @@ LaxmiChitFund is a modern crowdfunding system built with Next.js, leveraging bot
 Here’s a preview of LaxmiChitFund in action:
 
 1. Home Page
-   ![LaxmiChitFund Demo](public/DemoScreenshots/homePage.png)
+   ![LaxmiChitFund Demo](public\DemoScreenshots\homePage.png)
 
 2. User Page
-   ![LaxmiChitFund Demo](public/DemoScreenshots/yourPage.png)
+   ![LaxmiChitFund Demo](public\DemoScreenshots\yourPage.png)
 
 3. Payment Page
-   ![LaxmiChitFund Demo](public/DemoScreenshots/paymentPage.png)
+   ![LaxmiChitFund Demo](public\DemoScreenshots\paymentPage.png)
