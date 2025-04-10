@@ -123,7 +123,7 @@ const PaymentPage = ({ username }) => {
       <div className="info flex justify-center items-center my-24 mb-32 flex-col gap-2">
         <div className="font-bold text-lg">@{currentUser.username}</div>
         <div className="text-slate-400">
-          Let's help {currentUser.username} get a laxmi!
+          Let&apos;s help {currentUser.username} get a laxmi!
         </div>
         <div className="text-slate-400">
           {payments.length} Payments . ₹
