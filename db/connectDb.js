@@ -1,9 +1,8 @@
 import mongoose from "mongoose";
 
 const MONGODB_URI = process.env.MONGODB_URI;
-
 if (!MONGODB_URI) {
-  throw new Error("MONGODB_URI is not defined in environment variables.");
+  throw new Error("MONGODB_URI not found in environment variables.");
 }
 
 let cached = global.mongoose;
@@ -19,9 +18,7 @@ async function connectDB() {
     cached.promise = mongoose
       .connect(MONGODB_URI, {
         bufferCommands: false,
-        useNewUrlParser: true,
-        useUnifiedTopology: true,
-        dbName: "laxmichitfund", // explicitly define db name if needed
+        dbName: "laxmichitfund",
       })
       .then((mongoose) => mongoose);
   }
