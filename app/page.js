@@ -8,7 +8,7 @@ export default function Home() {
         <div className="font-bold md:text-5xl flex gap-3 justify-center items-center text-3xl">
           Build Your Wealth with Flexible, Secure Chit Funds
           <span>
-            <img width={50} src="./rupee.gif" alt="" />
+            <Image height={50} width={50} src="/rupee.gif" alt="" />
           </span>
         </div>
         <p className="text-center md:text-left">
@@ -42,28 +42,34 @@ export default function Home() {
         </h1>
         <div className="flex gap-5 justify-around">
           <div className="item space-y-3 flex flex-col items-center justify-center">
-            <img
+            <Image
               // className="bg-gray-500 rounded-full p-2"
               width={100}
-              src="./piggybank.gif"
+              height={100}
+              src="/piggybank.gif"
+              unoptimized
               alt=""
             />
             <p className="font-bold text-center">Choose Your Chit Fund</p>
           </div>
           <div className="item space-y-3 flex flex-col items-center justify-center">
-            <img
+            <Image
               // className="bg-gray-500 rounded-full p-2"
               width={100}
-              src="./piggybank.gif"
+              height={100}
+              unoptimized
+              src="/piggybank.gif"
               alt=""
             />
             <p className="font-bold text-center">Choose Your Chit Fund</p>
           </div>
           <div className="item space-y-3 flex flex-col items-center justify-center">
-            <img
+            <Image
               // className="bg-gray-500 rounded-full p-2"
               width={100}
-              src="./piggybank.gif"
+              height={100}
+              unoptimized
+              src="/piggybank.gif"
               alt=""
             />
             <p className="font-bold text-center">Choose Your Chit Fund</p>

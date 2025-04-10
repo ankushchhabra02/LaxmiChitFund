@@ -1,3 +1,4 @@
+import Image from "next/image";
 import React from "react";
 
 const About = () => {
@@ -14,10 +15,13 @@ const About = () => {
       <h2 className="text-2xl font-semibold mb-4">How It Works</h2>
       <div className="grid grid-cols-1 sm:grid-cols-2 gap-8">
         <div className="flex items-center mb-6">
-          <img
+          <Image
             className="w-20 h-20 rounded-full mr-4"
-            src="./piggybank.gif"
+            src="/piggybank.gif"
             alt="Join a Chit Group"
+            width={80}
+            height={80}
+            unoptimized
           />
           <div>
             <h3 className="text-xl font-semibold mb-2">Join a Chit Group</h3>
@@ -27,11 +31,15 @@ const About = () => {
             </p>
           </div>
         </div>
+
         <div className="flex items-center mb-6">
-          <img
+          <Image
             className="w-20 h-20 rounded-full mr-4"
-            src="./piggybank.gif"
+            src="/piggybank.gif"
             alt="Participate in Auctions"
+            width={80}
+            height={80}
+            unoptimized
           />
           <div>
             <h3 className="text-xl font-semibold mb-2">
@@ -40,11 +48,15 @@ const About = () => {
             <p>Bid for the pooled amount and access funds when needed.</p>
           </div>
         </div>
+
         <div className="flex items-center mb-6">
-          <img
+          <Image
             className="w-20 h-20 rounded-full mr-4"
-            src="./piggybank.gif"
+            src="/piggybank.gif"
             alt="Enjoy Financial Growth"
+            width={80}
+            height={80}
+            unoptimized
           />
           <div>
             <h3 className="text-xl font-semibold mb-2">

@@ -2,13 +2,12 @@
 import React, { useEffect, useState } from "react";
 import Script from "next/script";
 import { fetchpayments, fetchuser, initiate } from "@/actions/useractions";
-import { useSession } from "next-auth/react";
 import { useSearchParams } from "next/navigation";
 import { ToastContainer, toast } from "react-toastify";
 import "react-toastify/dist/ReactToastify.css";
 import { Bounce } from "react-toastify";
 import { useRouter } from "next/navigation";
-import { notFound } from "next/navigation";
+import Image from "next/image";
 
 const PaymentPage = ({ username }) => {
   //   const { data: session } = useSession();
@@ -101,18 +100,23 @@ const PaymentPage = ({ username }) => {
       <Script src="https://checkout.razorpay.com/v1/checkout.js"></Script>
 
       <div className="cover w-full bg-red-50 relative mt-12 md:mt-0">
-        <img
+        <Image
           className="object-cover w-full h-48 md:h-[350px] shadow-blue-700 shadow-sm"
           src={currentUser.coverpic}
-          alt=""
+          alt="Cover"
+          width={300}
+          height={250}
+          style={{ objectFit: "cover" }}
+          sizes="(max-width: 768px) 100vw, 100vw"
         />
+
         <div className="absolute -bottom-20 right-[33%] md:right-[46%] border-white overflow-hidden border-2 rounded-full size-36 ">
-          <img
-            className="rounded-full object-cover size-36"
-            width={128}
-            height={128}
+          <Image
+            className="rounded-full object-cover"
             src={currentUser.profilepic}
-            alt=""
+            alt="User Profile Picture"
+            width={144}
+            height={144}
           />
         </div>
       </div>
@@ -133,17 +137,18 @@ const PaymentPage = ({ username }) => {
               {payments.length == 0 && <li>No payments yet</li>}
               {payments.map((p, i) => {
                 return (
-                  <li className="my-4 flex gap-2 items-center">
-                    <img
+                  <li key={i} className="my-4 flex gap-2 items-center">
+                    <Image
                       className="border-none rounded-full"
                       width={33}
-                      src="profile.gif"
+                      height={33}
+                      src="/profile.gif"
                       alt="user avatar"
                     />
                     <span>
                       {p.name} donated{" "}
                       <span className="font-bold">₹{p.amount}</span> with a
-                      message "{p.message}"
+                      message &quot;{p.message}&quot;
                     </span>
                   </li>
                 );
