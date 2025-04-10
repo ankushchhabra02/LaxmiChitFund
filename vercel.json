@@ -1,0 +1,8 @@
+{
+    "functions": {
+      "api/auth/callback/github": {
+        "maxDuration": 30
+      }
+    }
+  }
+  
