@@ -1,27 +1,32 @@
 import mongoose from "mongoose";
 
-const MONGODB_URI =
-  process.env.MONGODB_URI || "mongodb://localhost:27017/laxmichitfund";
+const MONGODB_URI = process.env.MONGODB_URI;
 
-let cached = global.mongoose || { conn: null, promise: null };
+if (!MONGODB_URI) {
+  throw new Error("MONGODB_URI is not defined in environment variables.");
+}
+
+let cached = global.mongoose;
+
+if (!cached) {
+  cached = global.mongoose = { conn: null, promise: null };
+}
 
 async function connectDB() {
-  if (cached.conn) {
-    return cached.conn;
-  }
+  if (cached.conn) return cached.conn;
 
   if (!cached.promise) {
     cached.promise = mongoose
       .connect(MONGODB_URI, {
         bufferCommands: false,
+        useNewUrlParser: true,
+        useUnifiedTopology: true,
+        dbName: "laxmichitfund", // explicitly define db name if needed
       })
-      .then((mongoose) => {
-        return mongoose;
-      });
+      .then((mongoose) => mongoose);
   }
 
   cached.conn = await cached.promise;
-  global.mongoose = cached;
   return cached.conn;
 }
 

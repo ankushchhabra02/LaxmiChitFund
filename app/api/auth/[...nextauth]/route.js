@@ -4,6 +4,7 @@ import User from "@/models/User";
 import connectDB from "@/db/connectDb";
 
 export const authOptions = {
+  debug: true,
   providers: [
     GitHubProvider({
       clientId: process.env.GITHUB_ID,
@@ -14,21 +15,31 @@ export const authOptions = {
   callbacks: {
     async signIn({ user, account }) {
       if (account.provider === "github") {
-        await connectDB();
-        const existingUser = await User.findOne({ email: user.email });
-        if (!existingUser) {
-          await User.create({
-            email: user.email,
-            username: user.email.split("@")[0],
-          });
+        try {
+          await connectDB();
+          const existingUser = await User.findOne({ email: user.email });
+          if (!existingUser) {
+            await User.create({
+              email: user.email,
+              username: user.email.split("@")[0],
+            });
+          }
+        } catch (err) {
+          console.error("Error in signIn callback:", err);
+          return false; // gracefully fail sign in
         }
       }
       return true;
     },
+
     async session({ session }) {
-      await connectDB();
-      const dbUser = await User.findOne({ email: session.user.email });
-      session.user.name = dbUser.username;
+      try {
+        await connectDB();
+        const dbUser = await User.findOne({ email: session.user.email });
+        session.user.name = dbUser?.username || session.user.email;
+      } catch (err) {
+        console.error("Error in session callback:", err);
+      }
       return session;
     },
   },
