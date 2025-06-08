@@ -61,10 +61,17 @@ export const authoptions = NextAuth({
       return false; // Important: must return false if not handled
     },
 
-    async session({ session, user, token }) {
-      const dbUser = await User.findOne({ email: session.user.email });
-      session.user.name = dbUser.username;
-      return session;
+    async session({ session }) {
+      try {
+        const dbUser = await User.findOne({ email: session.user.email });
+        if (dbUser) {
+          session.user.name = dbUser.username;
+        }
+        return session;
+      } catch (error) {
+        console.error("Error in session callback:", error);
+        return session;
+      }
     },
   },
 });
