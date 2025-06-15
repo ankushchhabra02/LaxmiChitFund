@@ -1,97 +1,124 @@
-import Image from "next/image";
+import { Users, Gavel, TrendingUp } from "lucide-react";
 import React from "react";
 
 const About = () => {
   return (
-    <div className="container mx-auto px-8 md:px-4 py-8">
-      <h1 className="text-3xl font-semibold mb-4">About Laxmi Chit Fund</h1>
-      <p className="text-lg mb-6">
-        Laxmi Chit Fund is a trusted and transparent financial service providing
-        individuals and businesses with a secure way to save and access credit.
-        With a strong commitment to customer satisfaction, we offer an efficient
-        chit fund model that helps members achieve their financial goals.
+    <div className="container mx-auto px-6 py-16 text-white">
+      {/* Heading */}
+      <h1 className="text-3xl md:text-4xl font-bold mb-6 text-center">
+        About Laxmi Chit Fund
+      </h1>
+      <p className="text-gray-300 text-center max-w-3xl mx-auto mb-12">
+        Laxmi Chit Fund is a trusted and transparent financial service
+        empowering individuals and businesses with a secure way to save and
+        access credit. With a strong commitment to customer satisfaction, we
+        help members reach their financial goals through efficient chit fund
+        models.
       </p>
 
-      <h2 className="text-2xl font-semibold mb-4">How It Works</h2>
-      <div className="grid grid-cols-1 sm:grid-cols-2 gap-8">
-        <div className="flex items-center mb-6">
-          <Image
-            className="w-20 h-20 rounded-full mr-4"
-            src="/piggybank.gif"
-            alt="Join a Chit Group"
-            width={80}
-            height={80}
-            unoptimized
-          />
-          <div>
-            <h3 className="text-xl font-semibold mb-2">Join a Chit Group</h3>
-            <p>
-              Become a member of a chit fund group that suits your financial
-              needs.
+      {/* How It Works */}
+      <h2 className="text-2xl font-semibold mb-10 text-center">How It Works</h2>
+      <div className="grid md:grid-cols-3 gap-10 text-center mb-10">
+        <div className="flex flex-col items-center space-y-4">
+          <Users size={64} className="text-white animate-bounce" />
+          <h3 className="text-xl font-semibold">Join a Chit Group</h3>
+          <p className="text-gray-400 text-sm max-w-xs">
+            Become a member of a chit group tailored to your financial goals.
+          </p>
+        </div>
+
+        <div className="flex flex-col items-center space-y-4">
+          <Gavel size={64} className="text-white animate-bounce" />
+          <h3 className="text-xl font-semibold">Participate in Auctions</h3>
+          <p className="text-gray-400 text-sm max-w-xs">
+            Place bids and access pooled funds quickly when you need them.
+          </p>
+        </div>
+
+        <div className="flex flex-col items-center space-y-4">
+          <TrendingUp size={64} className="text-white animate-bounce" />
+          <h3 className="text-xl font-semibold">Enjoy Financial Growth</h3>
+          <p className="text-gray-400 text-sm max-w-xs">
+            Save smartly and grow your wealth with disciplined contributions.
+          </p>
+        </div>
+      </div>
+
+      {/* Why Choose Us */}
+      <div className="py-20 px-6 text-center text-white">
+        <h2 className="text-2xl md:text-3xl font-bold mb-12">
+          Why Choose Laxmi Chit Fund?
+        </h2>
+        <div className="grid md:grid-cols-2 lg:grid-cols-4 gap-8 max-w-6xl mx-auto">
+          <div className="  p-6  flex flex-col items-center space-y-3">
+            <div className="text-3xl ">✅</div>
+            <h4 className="font-semibold text-lg">Trusted & Compliant</h4>
+            <p className="text-sm text-gray-300">
+              Fully legal and trusted chit fund operations backed by
+              regulations.
             </p>
           </div>
-        </div>
-
-        <div className="flex items-center mb-6">
-          <Image
-            className="w-20 h-20 rounded-full mr-4"
-            src="/piggybank.gif"
-            alt="Participate in Auctions"
-            width={80}
-            height={80}
-            unoptimized
-          />
-          <div>
-            <h3 className="text-xl font-semibold mb-2">
-              Participate in Auctions
-            </h3>
-            <p>Bid for the pooled amount and access funds when needed.</p>
+          <div className="  p-6  flex flex-col items-center space-y-3">
+            <div className="text-3xl ">🔐</div>
+            <h4 className="font-semibold text-lg">Secure Transactions</h4>
+            <p className="text-sm text-gray-300">
+              End-to-end encrypted and transparent transactions ensure safety.
+            </p>
           </div>
-        </div>
-
-        <div className="flex items-center mb-6">
-          <Image
-            className="w-20 h-20 rounded-full mr-4"
-            src="/piggybank.gif"
-            alt="Enjoy Financial Growth"
-            width={80}
-            height={80}
-            unoptimized
-          />
-          <div>
-            <h3 className="text-xl font-semibold mb-2">
-              Enjoy Financial Growth
-            </h3>
-            <p>Save and invest with disciplined financial planning.</p>
+          <div className="  p-6  flex flex-col items-center space-y-3">
+            <div className="text-3xl ">📈</div>
+            <h4 className="font-semibold text-lg">Flexible Plans</h4>
+            <p className="text-sm text-gray-300">
+              Choose chit plans tailored for individuals or businesses with
+              ease.
+            </p>
+          </div>
+          <div className="  p-6  flex flex-col items-center space-y-3">
+            <div className="text-3xl ">💳</div>
+            <h4 className="font-semibold text-lg">No Loan Hassles</h4>
+            <p className="text-sm text-gray-300">
+              Access pooled funds easily without going through loan procedures.
+            </p>
           </div>
         </div>
       </div>
 
-      <h2 className="text-2xl font-semibold mb-4">
-        Why Choose Laxmi Chit Fund?
-      </h2>
-      <ul className="list-disc pl-6 mb-6">
-        <li className="mb-2">
-          Trusted and legally compliant chit fund services
-        </li>
-        <li className="mb-2">Secure and transparent financial transactions</li>
-        <li className="mb-2">
-          Flexible chit plans for individuals and businesses
-        </li>
-        <li className="mb-2">
-          Easy access to credit without traditional loans
-        </li>
-      </ul>
-
-      <h2 className="text-2xl font-semibold mb-4">Benefits for Members</h2>
-      <ul className="list-disc pl-6 mb-6">
-        <li className="mb-2">A disciplined way to save and invest</li>
-        <li className="mb-2">Access to funds in emergencies</li>
-        <li className="mb-2">Higher returns compared to traditional savings</li>
-        <li className="mb-2">
-          Financial support for personal and business needs
-        </li>
-      </ul>
+      {/* Member Benefits */}
+      <div className="py-20 px-6 text-center text-white">
+        <h2 className="text-2xl md:text-3xl font-bold mb-12">
+          Member Benefits
+        </h2>
+        <div className="grid md:grid-cols-2 lg:grid-cols-4 gap-8 max-w-6xl mx-auto">
+          <div className="  p-6  flex flex-col items-center space-y-3">
+            <div className="text-3xl ">💰</div>
+            <h4 className="font-semibold text-lg">Disciplined Saving</h4>
+            <p className="text-sm text-gray-300">
+              Regular contributions help you build a stable financial habit.
+            </p>
+          </div>
+          <div className="  p-6  flex flex-col items-center space-y-3">
+            <div className="text-3xl ">🛡️</div>
+            <h4 className="font-semibold text-lg">Emergency Funds</h4>
+            <p className="text-sm text-gray-300">
+              Withdraw from the fund whenever urgent financial needs arise.
+            </p>
+          </div>
+          <div className="  p-6  flex flex-col items-center space-y-3">
+            <div className="text-3xl ">📊</div>
+            <h4 className="font-semibold text-lg">Better Returns</h4>
+            <p className="text-sm text-gray-300">
+              Get more value than typical savings accounts or FDs.
+            </p>
+          </div>
+          <div className="  p-6  flex flex-col items-center space-y-3">
+            <div className="text-3xl ">📥</div>
+            <h4 className="font-semibold text-lg">Financial Support</h4>
+            <p className="text-sm text-gray-300">
+              Meet both personal and business goals without loans.
+            </p>
+          </div>
+        </div>
+      </div>
     </div>
   );
 };

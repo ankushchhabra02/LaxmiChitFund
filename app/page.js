@@ -1,21 +1,20 @@
 import Image from "next/image";
 import Link from "next/link";
+import { Wallet, UserPlus, BarChart3 } from "lucide-react";
 
 export default function Home() {
   return (
     <>
-      <div className="flex justify-center flex-col items-center gap-4 text-white h-[44vh] px-5 md:px-0 text-xs md:text-base">
-        <div className="font-bold md:text-5xl flex gap-3 justify-center items-center text-3xl">
-          Build Your Wealth with Flexible, Secure Chit Funds
-          <span>
-            <Image height={50} width={50} src="/rupee.gif" alt="" />
-          </span>
-        </div>
-        <p className="text-center md:text-left">
-          Join LaxmiChitFund and start saving with ease while enjoying flexible
-          financial solutions tailored to your needs.
+      {/* Hero Section */}
+      <div className="flex flex-col items-center justify-center gap-6 text-white h-[60vh] px-6 text-center">
+        <h1 className="text-3xl md:text-5xl font-bold leading-tight max-w-3xl">
+          Grow Your Wealth with India’s Most Secure Online Chit Fund
+        </h1>
+        <p className="max-w-xl text-sm md:text-base text-gray-300">
+          Create your account, manage groups, and send or receive money safely
+          with LaxmiChitFund.
         </p>
-        <div>
+        <div className="flex flex-wrap gap-4">
           <Link href={"/login"}>
             <button
               type="button"
@@ -33,62 +32,109 @@ export default function Home() {
             </button>
           </Link>
         </div>
+        <p className="text-sm text-gray-400 mt-2">
+          Trusted by 10,000+ users across India
+        </p>
       </div>
-      <div className="bg-white h-1 opacity-10"></div>
 
-      <div className="text-white container mx-auto pb-32 pt-14 px-10">
-        <h1 className="text-3xl font-bold text-center mb-14">
-          Start Saving Today!
-        </h1>
-        <div className="flex gap-5 justify-around">
-          <div className="item space-y-3 flex flex-col items-center justify-center">
-            <Image
-              // className="bg-gray-500 rounded-full p-2"
-              width={100}
-              height={100}
-              src="/piggybank.gif"
-              unoptimized
-              alt=""
-            />
-            <p className="font-bold text-center">Choose Your Chit Fund</p>
+      {/* How It Works Section */}
+      <div className="py-20 px-6">
+        <h2 className="text-3xl font-bold text-center text-white mb-20">
+          How It Works
+        </h2>
+        <div className="grid md:grid-cols-3 gap-10 text-center max-w-6xl mx-auto text-white">
+          <div className="space-y-4 flex flex-col items-center">
+            <UserPlus size={100} className="text-white animate-bounce" />
+            <h3 className="text-xl font-semibold">Create Your Account</h3>
+            <p className="text-gray-300 text-sm">
+              Sign up and complete your KYC to begin your saving journey.
+            </p>
           </div>
-          <div className="item space-y-3 flex flex-col items-center justify-center">
-            <Image
-              // className="bg-gray-500 rounded-full p-2"
-              width={100}
-              height={100}
-              unoptimized
-              src="/piggybank.gif"
-              alt=""
-            />
-            <p className="font-bold text-center">Choose Your Chit Fund</p>
+          <div className="space-y-4 flex flex-col items-center">
+            <Wallet size={100} className="text-white animate-bounce" />
+            <h3 className="text-xl font-semibold">Send & Receive Money</h3>
+            <p className="text-gray-300 text-sm">
+              Join a chit group and contribute monthly. Receive payouts
+              securely.
+            </p>
           </div>
-          <div className="item space-y-3 flex flex-col items-center justify-center">
-            <Image
-              // className="bg-gray-500 rounded-full p-2"
-              width={100}
-              height={100}
-              unoptimized
-              src="/piggybank.gif"
-              alt=""
-            />
-            <p className="font-bold text-center">Choose Your Chit Fund</p>
+          <div className="space-y-4 flex flex-col items-center">
+            <BarChart3 size={100} className="text-white animate-bounce" />
+            <h3 className="text-xl font-semibold">Track Your Progress</h3>
+            <p className="text-gray-300 text-sm">
+              Monitor contributions, withdrawals, and group activity in real
+              time.
+            </p>
           </div>
         </div>
       </div>
-      <div className="bg-white h-1 opacity-10"></div>
-      <div className="text-white container mx-auto pb-32 pt-14 flex flex-col items-center justify-center">
-        <h2 className="text-3xl font-bold text-center mb-14">
-          Start Saving Today!
+
+      {/* Video Demo Section */}
+      <div className="py-20 px-6 flex flex-col items-center justify-center text-white">
+        <h2 className="text-3xl font-bold text-center mb-6">
+          See LaxmiChitFund in Action
         </h2>
-        <div className="w-[90%] h-[40vh] md:w-[50%] md:h-[40vh] lg:w-[50%] lg:h-[40vh] xl:w-[50%] xl:h-[40vh]">
-          <iframe
-            className="w-full h-full"
-            src="https://www.youtube.com/embed/qyxCSLK2VQc?si=tSljlZYlrsHGuxTW"
-            title="YouTube video player"
-            allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
-            allowFullScreen
-          ></iframe>
+        <p className="text-sm text-gray-400 max-w-xl text-center mb-10">
+          A quick walkthrough showing how easy it is to use our platform to
+          join, save, and grow.
+        </p>
+        <div className="w-full h-[40vh] md:w-[70%] md:h-[70vh] rounded-lg overflow-hidden bg-black">
+          <video
+            src="/demo.mp4"
+            autoPlay
+            muted
+            loop
+            playsInline
+            className="w-full h-full rounded-lg shadow-md object-contain"
+          >
+            Your browser does not support the video tag.
+          </video>
+        </div>
+      </div>
+
+      {/* Dashboard Preview */}
+      <div className="text-white py-20 px-6 text-center">
+        <h2 className="text-3xl font-bold mb-6">
+          Manage Everything from One Powerful Dashboard
+        </h2>
+        <p className="max-w-2xl mx-auto text-gray-400 mb-10">
+          Stay in control with our secure dashboard. Track contributions, view
+          payout history, manage chit groups, and more.
+        </p>
+        <Image
+          src="/demo.png"
+          alt="Dashboard Preview"
+          width={1000}
+          height={500}
+          className="rounded-lg mx-auto shadow-xl"
+        />
+      </div>
+
+      {/* Trust Section */}
+      <div className=" text-white py-20 px-6 text-center">
+        <h3 className="text-2xl font-bold mb-10">Why Choose LaxmiChitFund?</h3>
+        <div className="grid md:grid-cols-3 gap-10 max-w-6xl mx-auto">
+          <div>
+            <h4 className="font-semibold text-lg">🔐 Secure Transactions</h4>
+            <p className="text-sm text-indigo-200 mt-2">
+              All money transfers are end-to-end encrypted and logged for
+              transparency.
+            </p>
+          </div>
+          <div>
+            <h4 className="font-semibold text-lg">✅ Verified Members</h4>
+            <p className="text-sm text-indigo-200 mt-2">
+              Every user is verified through KYC before they join or create a
+              chit group.
+            </p>
+          </div>
+          <div>
+            <h4 className="font-semibold text-lg">📊 Transparent Tracking</h4>
+            <p className="text-sm text-indigo-200 mt-2">
+              Users can monitor their performance, contributions, and withdraw
+              status at any time.
+            </p>
+          </div>
         </div>
       </div>
     </>
